@@ -1,15 +1,11 @@
-FROM ubuntu:22.04
+FROM alpine:latest
 
 WORKDIR /app
 
-RUN apt update && apt install -y wget unzip
+COPY pocketbase.exe .
 
-RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.38.2/pocketbase_0.38.2_linux_amd64.zip
-
-RUN unzip pocketbase_0.38.2_linux_amd64.zip
-
-COPY pb_data ./pb_data
+RUN chmod +x pocketbase.exe
 
 EXPOSE 8080
 
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8080"]
+CMD ["./pocketbase.exe", "serve", "--http=0.0.0.0:8080"]
