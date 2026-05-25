@@ -12,4 +12,6 @@ COPY pb_data ./pb_data
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "./pocketbase serve --http=0.0.0.0:${PORT:-8080}"]
+ENTRYPOINT ["./pocketbase"]
+
+CMD ["serve", "--http=0.0.0.0:8080"]
